@@ -38,6 +38,8 @@ Es un algoritmo de detección de anomalias cuyo objetivo principal es identifica
 
 [![isolatef-model.png](https://i.postimg.cc/cHyTw6Vr/isolatef-model.png)](https://postimg.cc/Y4R1w22H)
 
+**Es importante recordar una primisa del estudio y es que en este dataset que analizamos y utilizamos (despues del feature engineer) tiene las columnas total_transaction y el total_transaction_amount que indica el total de transacciones y el total monetario transado (respectivamente) para una pareja cuenta (account) - comercio (subsidary) en 1 dia calendario (24 horas desde las 00:00 hasta las 23:59)**
+
 Finalmente para el alcance del producto, con los resultados obtenidos tengo dos propuestas que dependeran de decisiones de negocio:
 
 - A: Modelo que no permita que ninguna transaccion unitaria (solo una transaccion por pareja transaccional en la ventana de tiempo) aparezca como anomala / contaminación = 0.08%
