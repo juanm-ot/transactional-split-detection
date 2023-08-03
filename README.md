@@ -1,6 +1,6 @@
 
 
-**Este repositorio ha sido marcado como un repositorio de archivos grandes (Git LFS)**
+**Este repositorio ha sido marcado como un repositorio de archivos grandes (Git LFS). Puede que tarde en descargarse/clonarse por los archivos tan grandes que posee; en especifico los parquet que conforman el set de datos y su procesamiento**
 
 El objetivo de este producto de datos es **idear una solución para identificar transacciones que evidencian un comportamiento de Mala Práctica Transaccional**, es decir, un comportamiento donde se evidencia un uso de los canales mal intencionado.
 
@@ -47,6 +47,10 @@ Bajo mi analisis  y las metricas de evaluación selecciono la opción A, ya que 
 
 **Los modelos generados se adjuntan en la carpeta con el nombre: 'modelo_optimo_more_5_transaction.joblib' y 'modelo_optimo_unitari_transactions.joblib'**
 
+## Propuesta de arquitectura
+
+Se propone la siguiente arquitecura para montar en producciòn el modelo
+[![diagrama-arquitectura.png](https://i.postimg.cc/VNMxpKb6/diagrama-arquitectura.png)](https://postimg.cc/R3SpnQd5)
 
 ## Estructura repositorio
 
