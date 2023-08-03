@@ -45,7 +45,7 @@ Finalmente para el alcance del producto, con los resultados obtenidos tengo dos 
 
 Bajo mi analisis  y las metricas de evaluación selecciono la opción A, ya que garantizo teoricamente la normalidad y para las transacciones que estan en el borde del umbral puedo proponer una regla programatica para enviarla a revision manual cuando se detecte sospechosa. 
 
-
+** Los modelos generados se adjuntan en la carpeta con el nombre: 'modelo_optimo_more_5_transaction.joblib' y 'modelo_optimo_unitari_transactions.joblib'**
 
 
 ## Estructura repositorio
