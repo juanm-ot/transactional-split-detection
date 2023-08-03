@@ -1,5 +1,7 @@
 
 
+** Este repositorio ha sido marcado como un repositorio de archivos grandes (Git LFS)**
+
 El objetivo de este producto de datos es **idear una solución para identificar transacciones que evidencian un comportamiento de Mala Práctica Transaccional**, es decir, un comportamiento donde se evidencia un uso de los canales mal intencionado.
 
 En este caso, la orientación sera en la práctica de **Fraccionamiento Transaccional**, esta mala práctica consiste en fraccionar una transacción en un número mayor de transacciones con menor monto que agrupadas suman el valor de la transacción original. Estas transacciones se caracterizan por estar en una misma ventana de tiempo que suele ser 24 horas y tienen como origen o destino la misma cuenta o cliente
@@ -34,12 +36,15 @@ Es un algoritmo de detección de anomalias cuyo objetivo principal es identifica
 * El proceso de exploración de los modelos empezo con un clasico del aprendizaje no supervisado: DBSCAN. Este modelo fue descartado porque no tuvo buenas metricas de evaluación, tampoco fue funcional y la gran capacidad de procesamiento lo hace un algoritmo poco eficiente
 * Itere de manera escalonada sobre el Isolate Forest, fui introduciendole data en cada entrenamiento y mostro buen performance,tambien fui ajustando sus parametros para lograr encontrar el umbral de los outliers (random state para mantener la reproducibilidad y contaminación para indicarle la base de outliers) Ademas de un procesamiento muy rapido. 
 
+[![isolatef-model.png](https://i.postimg.cc/cHyTw6Vr/isolatef-model.png)](https://postimg.cc/Y4R1w22H)
+
 Finalmente para el alcance del producto, con los resultados obtenidos tengo dos propuestas que dependeran de decisiones de negocio:
 
 - A: Modelo que no permita que ninguna transaccion unitaria (solo una transaccion por pareja transaccional en la ventana de tiempo) aparezca como anomala / contaminación = 0.08%
 - B: Modelo que no permita que ninguna pareja transaccional con mas de 5 transacciones al dia sea marcada como no anomala. contaminación = 2,4%
 
 Bajo mi analisis  y las metricas de evaluación selecciono la opción A, ya que garantizo teoricamente la normalidad y para las transacciones que estan en el borde del umbral puedo proponer una regla programatica para enviarla a revision manual cuando se detecte sospechosa. 
+
 
 
 
@@ -67,7 +72,6 @@ El diseño del producto esta modelado en archivos unitarios que definen cada eta
 ├── pruebas_concepto                   # carpeta auxiliar desarrollos experimentales
 │   └── 24h_featured_data_0001.parquet
 │   └── 03_24hfeature_engineering.ipynb
-│   └── 
 │
 ├── graficos                           # carpeta para cargar imagenes para los .ipynb
 │   └── algún-archivo
@@ -82,3 +86,4 @@ El diseño del producto esta modelado en archivos unitarios que definen cada eta
 ## Requerimientos
 
 Recuerde si va a correr en el local, crear un ambiente virtual e instalar las dependencias necesarias desde el archivo requirements.txt
+
