@@ -93,3 +93,6 @@ El diseño del producto esta modelado en archivos unitarios que definen cada eta
 
 Recuerde si va a correr en el local, crear un ambiente virtual e instalar las dependencias necesarias desde el archivo requirements.txt
 
+
+### **PD: fue muy complicado subir los diferentes set de datos (iniciales, procesados - limpiados, salidas del feature engineer). Si se requieren por favor contactarme a: juanm_otalvaro@outlook.com :D**
+
