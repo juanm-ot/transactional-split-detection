@@ -1,7 +1,3 @@
-
-
-**Este repositorio ha sido marcado como un repositorio de archivos grandes (Git LFS). Puede que tarde en descargarse/clonarse por los archivos tan grandes que posee; en especifico los parquet que conforman el set de datos y su procesamiento**
-
 El objetivo de este producto de datos es **idear una solución para identificar transacciones que evidencian un comportamiento de Mala Práctica Transaccional**, es decir, un comportamiento donde se evidencia un uso de los canales mal intencionado.
 
 En este caso, la orientación sera en la práctica de **Fraccionamiento Transaccional**, esta mala práctica consiste en fraccionar una transacción en un número mayor de transacciones con menor monto que agrupadas suman el valor de la transacción original. Estas transacciones se caracterizan por estar en una misma ventana de tiempo que suele ser 24 horas y tienen como origen o destino la misma cuenta o cliente
@@ -28,7 +24,7 @@ Los registros transaccionales deben actualizarse en tiempo real. El feature engi
 
 En terminos teoricos, la data debe tomarse en tiempo real tambien para que el modelo detecte el cambio de patrones y capture las nuevas reglas asociadas a las malas practicas
 
-## Modelo Isolate Forest
+## Modelo Isolation Forest
 
 Es un algoritmo de detección de anomalias cuyo objetivo principal es identificar puntos que son inusuales o diferentes del resto del conjunto de datos a traves de la construcción de arboles de aislamiento. Tiene muy buen performance en terminos de procesamiento por eso es adecuado para conjuntos de datos con una gran cantidad de datos normales y solo unas pocas anomalias. 
 
@@ -38,7 +34,7 @@ Es un algoritmo de detección de anomalias cuyo objetivo principal es identifica
 
 [![isolatef-model.png](https://i.postimg.cc/cHyTw6Vr/isolatef-model.png)](https://postimg.cc/Y4R1w22H)
 
-**Es importante recordar una primisa del estudio y es que en este dataset que analizamos y utilizamos (despues del feature engineer) tiene las columnas total_transaction y el total_transaction_amount que indica el total de transacciones y el total monetario transado (respectivamente) para una pareja cuenta (account) - comercio (subsidary) en 1 dia calendario (24 horas desde las 00:00 hasta las 23:59)**
+**Es importante anotar que los registros de entrenamiento para el modelo corresponden a la ultimo registro por pareja transaccional en la ventana de tiempo, este registro va a tener, derivado del feature engineering, datos relacionados con el historico y comportamiento transaccional**
 
 Finalmente para el alcance del producto, con los resultados obtenidos tengo dos propuestas que dependeran de decisiones de negocio:
 
@@ -47,12 +43,14 @@ Finalmente para el alcance del producto, con los resultados obtenidos tengo dos 
 
 Bajo mi analisis  y las metricas de evaluación selecciono la opción A, ya que garantizo teoricamente la normalidad y para las transacciones que estan en el borde del umbral puedo proponer una regla programatica para enviarla a revision manual cuando se detecte sospechosa. 
 
-**Los modelos generados se adjuntan en la carpeta con el nombre: 'modelo_optimo_more_5_transaction.joblib' y 'modelo_optimo_unitari_transactions.joblib'**
+**Los modelos generados se adjuntan en la carpeta runs con el nombre: 'modelo_optimo_more_5_transaction.joblib' y 'modelo_optimo_unitari_transactions.joblib'**
 
 ## Propuesta de arquitectura
 
-Se propone la siguiente arquitecura para montar en producciòn el modelo
+Se propone la siguiente arquitecura para montar en producción el modelo usando recursos de AWS como EC2, API GATEWAY, RDS Y REDIS
 [![diagrama-arquitectura.png](https://i.postimg.cc/VNMxpKb6/diagrama-arquitectura.png)](https://postimg.cc/R3SpnQd5)
+
+En la carpeta **propuesta_arquitecura**, se puede leer la explicación y el proceso. 
 
 ## Estructura repositorio
 
@@ -63,8 +61,9 @@ El diseño del producto esta modelado en archivos unitarios que definen cada eta
 
 .
 ├── README.md                          # Leeme
-├── 01_process_pipeline.ipynb          # pre-procesamiento data.
-├── 02_eda.ipynb                       # analisis exploratorio
+├── 01_process_pipeline.ipynb          # pre-procesamiento data
+├── 02_eda_section_a.ipynb             # analisis exploratorio parte a
+├── 02_eda_section_b.ipynb             # analisis exploratorio parte b
 ├── 03_Dayfeature_engineering.ipynb    # feature engineering
 ├── 04_feature_explorations.ipynb      # analisis estadistico features
 ├── 05_model_dbscan_test.ipynb         # exploración modelo dbscan
@@ -94,5 +93,7 @@ El diseño del producto esta modelado en archivos unitarios que definen cada eta
 Recuerde si va a correr en el local, crear un ambiente virtual e instalar las dependencias necesarias desde el archivo requirements.txt
 
 
-### **PD: fue muy complicado subir los diferentes set de datos (iniciales, procesados - limpiados, salidas del feature engineer). Si se requieren por favor contactarme a: juanm_otalvaro@outlook.com :D**
+## Notas
 
+- Este repositorio en su primer commit fue  marcado como un repositorio de archivos grandes (Git LFS). Puede que tarde en descargarse/clonarse por los archivos tan grandes que posee en especifico los parquet que conforman el set de datos y su procesamiento
+- Por la capacidad de almacenamiento y tiempo de subida fue muy complicado agregar al repositorio los diferentes set de datos (processed_pipieline y featured_data) Si se requieren por favor ponerse en contacto, estare colgandolos pronto en la nube.
