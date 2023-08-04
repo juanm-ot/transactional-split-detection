@@ -97,3 +97,4 @@ Recuerde si va a correr en el local, crear un ambiente virtual e instalar las de
 
 - Este repositorio en su primer commit fue  marcado como un repositorio de archivos grandes (Git LFS). Puede que tarde en descargarse/clonarse por los archivos tan grandes que posee en especifico los parquet que conforman el set de datos y su procesamiento
 - Por la capacidad de almacenamiento y tiempo de subida fue muy complicado agregar al repositorio los diferentes set de datos (processed_pipieline y featured_data) Si se requieren por favor ponerse en contacto, estare colgandolos pronto en la nube.
+- Github no permite visualizacion de la libreria plotly. Si se decarga la notebook puede acceder a los graficos ineractivos propuestos en el analisis, en algunas partes subi el png de la imagen para ilustrar desde este repositorio. Se esta trabajando en una aplicación web con Streamlit para mostrarlos en linea.  
